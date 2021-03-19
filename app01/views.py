@@ -88,24 +88,24 @@ def all_tie(request, kid, reply_limit, time_limit):
             print(topics)
 
             # 筛选发布时间
-            tmp = []
-            for topic in topics:
-                if time_limit == '0': # 0是全部时间
-                    pass
-                elif time_limit == '1':   # 1是1个月内
-                    # 如果在限制之前，就筛掉
-                    pass
-                elif time_limit == '2':   # 2是3个月内
-                    # 如果在限制之前，就筛掉
-                    pass
-                elif time_limit == '3':   # 3是6个月内
-                    # 如果在限制之前，就筛掉
-                    pass
-                elif time_limit == '4':   # 4是1年内
-                    # 如果在限制之前，就筛掉
-                    pass
-                tmp.append(topic)
-            topics = tmp
+            # tmp = []
+            # for topic in topics:
+            #     if time_limit == '0': # 0是全部时间
+            #         pass
+            #     elif time_limit == '1':   # 1是1个月内
+            #         # 如果在限制之前，就筛掉
+            #         pass
+            #     elif time_limit == '2':   # 2是3个月内
+            #         # 如果在限制之前，就筛掉
+            #         pass
+            #     elif time_limit == '3':   # 3是6个月内
+            #         # 如果在限制之前，就筛掉
+            #         pass
+            #     elif time_limit == '4':   # 4是1年内
+            #         # 如果在限制之前，就筛掉
+            #         pass
+            #     tmp.append(topic)
+            # topics = tmp
 
         response = {
             'topics': topics,
@@ -151,10 +151,16 @@ def login(request):
                 return HttpResponse(json.dumps(response))
                 pass
         elif type == 'register':
-            models.User.objects.create(uid=uid, password=pwd)
-            response['status'] = True
-            request.session['uid'] = uid
-            return HttpResponse(json.dumps(response))
+            if len(models.User.objects.filter(uid=uid)) != 0:
+                # 已被创建，返回错误
+                response['msg'] = '用户名已被创建'
+                return HttpResponse(json.dumps(response))
+                pass
+            else:
+                models.User.objects.create(uid=uid, password=pwd)
+                response['status'] = True
+                request.session['uid'] = uid
+                return HttpResponse(json.dumps(response))
 
 
 # 注册
@@ -163,7 +169,7 @@ def register(request):
         # 判断是否已有
         uid = request.POST.get('uid')
         pwd = request.POST.get('pwd')
-        if len(models.User.objects.filter(uid=uid)) != 0:
+        if models.User.objects.filter(uid=uid) != null:
             # 已被创建，返回错误
             return render(request, 'login.html', {'message': '用户名已被创建'})
         else:
