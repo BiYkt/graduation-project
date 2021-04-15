@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--<html xmlns="http://www.w3.org/1999/xhtml">-->
-<head>
+<head xmlns="http://www.w3.org/1999/html">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>论坛</title>
+    <title>法制宣传论坛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 样式-->
@@ -69,6 +69,9 @@
             color: black;
             display: block;
             margin-left: 10px;
+        }
+        body{
+            background: white;
         }
     </style>
 </head>
@@ -156,7 +159,7 @@
 
         <!-- top 10公告 -->
         <div class="span8">
-            <h3 style="margin-top: -40px;"> &nbsp;&nbsp;TOP 10 公告<br/></h3>
+            <h3 style="margin-top: -40px;"> 每日一则法律知识<br/></h3>
             {% for a in a_list %}
                 <a href="/single-an-{{ a.a_id }}" class="top10">{{ a.a_title }}</a>
             {% endfor %}
@@ -165,10 +168,14 @@
 
         <!-- 指导 -->
         <div class="span4">
-            <h3>欢迎来到法制宣传论坛 <br/>
-                这是指南</h3>
-            <p class="lead">tip：左边是top10公告，下面是按时间排序的帖子。</p>
-            <p>左边是top10公告，下面是按时间排序的帖子。请继续看。</p>
+            <h3>
+            欢迎来到法制宣传论坛 </br>
+            全民学法</br>
+            全民懂法</br>
+            全民守法</br>
+            共建遵纪守法美好家园</br>
+            </h3>
+
         </div>
     </div>
     <!-- top 10结束 -->
@@ -210,15 +217,15 @@
         <div style="margin-top: 30px" class="row">
             <div class="span12 footer-col footer-sub">
                 <div class="row no-margin">
-                    <div class="span6"><span class="left">一个论坛</span>
+                    <div class="span6"><span class="left">法制宣传论坛</span>
                     </div>
-                    <div class="span6">
-                            <span class="right">
-                            <a href="#">主页</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">选项1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
-                                    href="#">页面</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
-                                    href="#">联系我们</a>
-                            </span>
-                    </div>
+{#                    <div class="span6">#}
+{#                            <span class="right">#}
+{#                            <a href="#">主页</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">选项1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a#}
+{#                                    href="#">页面</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a#}
+{#                                    href="#">联系我们</a>#}
+{#                            </span>#}
+{#                    </div>#}
                 </div>
             </div>
         </div>

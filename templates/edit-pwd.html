@@ -2,7 +2,7 @@
 <!--<html xmlns="http://www.w3.org/1999/xhtml">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>论坛</title>
+    <title>法制宣传论坛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 样式-->
@@ -79,27 +79,27 @@
                                                             disabled="disabled" placeholder="{{ uid }}">
 inputttt        </div>
                 <div class="input-prepend" style="width: 300px;">
-                    <span class="add-on">原始密码：</span><input style="width: 200px" class="span2" id="uid"
+                    <span class="add-on">原始密码：</span><input style="width: 200px" class="span2" id="old_pwd"
                                                             size="16" type="password" name="old_pwd"
                                                             placeholder="原密码">
                 </div>
                 <div class="input-prepend">
-                    <span class="add-on">新的密码：</span><input style="width: 200px" class="span2" id="pwd"
+                    <span class="add-on">新的密码：</span><input style="width: 200px" class="span2" id="new_pwd1"
                                                             size="16" type="password" name="new_pwd1"
                                                             placeholder="新密码">
                 </div>
                 <div class="input-prepend">
-                    <span class="add-on">确认密码：</span><input style="width: 200px" class="span2" id="pwd2"
+                    <span class="add-on">确认密码：</span><input style="width: 200px" class="span2" id="new_pwd2"
                                                             size="16" type="password" name="new_pwd2"
                                                             placeholder="确认密码">
                 </div>
                 <div style="width: 300px;padding: 20px;margin: 0 auto;">
                     <button id="login-button" style="margin-right: 20px;margin-left: 20px;" class="btn btn-large"
-                            type="submit">提交
+                            type="button">提交
                     </button>
                     <button id="cancel-button" style="margin-right: 20px;margin-left: 20px;"
                             class="btn btn-large btn-inverse"
-                            type="submit">取消
+                            type="button">取消
                     </button>
                 </div>
             </form>
@@ -114,15 +114,15 @@ inputttt        </div>
         <div style="margin-top: 30px" class="row">
             <div class="span12 footer-col footer-sub">
                 <div class="row no-margin">
-                    <div class="span6"><span class="left">一个论坛</span>
+                    <div class="span6"><span class="left">法制宣传论坛</span>
                     </div>
-                    <div class="span6">
-                            <span class="right">
-                            <a href="#">主页</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">选项1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
-                                    href="#">页面</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
-                                    href="#">联系我们</a>
-                            </span>
-                    </div>
+{#                    <div class="span6">#}
+{#                            <span class="right">#}
+{#                            <a href="#">主页</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">选项1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a#}
+{#                                    href="#">页面</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a#}
+{#                                    href="#">联系我们</a>#}
+{#                            </span>#}
+{#                    </div>#}
                 </div>
             </div>
         </div>
@@ -137,11 +137,14 @@ inputttt        </div>
 <script>
     $('#login-button').click(function () {
         var uid = $('#uid').val();
-        var pwd = $('#pwd').val();
+        var new_pwd1 = $('#new_pwd1').val();
+        var old_pwd = $('#old_pwd').val();
+        var new_pwd2 =$('#new_pwd2').val();
         $.ajax({
             url: window.location.href,
+            async: false,
             type: "POST",
-            data: {'type': 'login', 'uid': uid, 'pwd': pwd},
+            data: {'type': 'login', 'uid': uid, 'new_pwd2': new_pwd2, 'new_pwd1': new_pwd1, 'old_pwd': old_pwd},
             beforeSend: function (xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");    // csrf
             },
@@ -150,6 +153,7 @@ inputttt        </div>
                 var dic = JSON.parse(data)
                 if (!dic.status) alert(JSON.parse(data).msg);
                 else window.location.href = "/home";
+                return false;
             }
         });
     });

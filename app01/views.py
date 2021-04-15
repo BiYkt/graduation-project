@@ -322,10 +322,16 @@ def edit_pwd(request):
         old = request.POST.get('old_pwd')
         new1 = request.POST.get('new_pwd1')
         new2 = request.POST.get('new_pwd2')
+        response = {'msg': '', 'status': False}
         if new1 == new2 and len(models.User.objects.filter(uid=uid, password=old)) != 0:
             # 核对成功，修改密码
             models.User.objects.filter(uid=uid).update(password=new1)
-        return redirect('/home')
+            response['status'] = True
+            return HttpResponse(json.dumps(response))
+        else:
+            response['msg'] = '密码输入错误，修改失败'
+            return HttpResponse(json.dumps(response))
+        # return redirect('/home')
 
 
 # 管理员登录
@@ -344,7 +350,7 @@ def admin(request):
             request.session['admin_uid'] = 'guanliyuan'
             return HttpResponse(json.dumps(response))
         else:
-            response['msg'] = '用户名或者密码错误'
+            response['msg'] = '管理员账号或者密码错误'
             return HttpResponse(json.dumps(response))
 
 

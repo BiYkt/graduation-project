@@ -38,11 +38,11 @@ File: scss
 .topbar {
   background: #009efb;
   /* Old browsers */
-  background: -moz-linear-gradient(left, #0178bc 0%, #00bdda 100%);
+  background: -moz-linear-gradient(left, #000000 0%, #FFFFFF 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #0178bc 0%, #00bdda 100%);
+  background: -webkit-linear-gradient(left, #000000 0%, #FFFFFF 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
+  background: linear-gradient(to right, #000000 0%, #FFFFFF 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
@@ -103,7 +103,7 @@ a.link:hover, a.link:focus {
 }
 
 .text-themecolor {
-  color: #009efb !important;
+  color: #000000 !important;
 }
 
 .profile-tab li a.nav-link.active,
@@ -164,8 +164,8 @@ a.link:hover, a.link:focus {
 }
 
 .sidebar-nav > ul > li.active > a {
-  border-left: 3px solid #009efb;
-  color: #009efb;
+  border-left: 3px solid #000000;
+  color: #000000;
 }
 
 .sidebar-nav > ul > li.active > a i {
